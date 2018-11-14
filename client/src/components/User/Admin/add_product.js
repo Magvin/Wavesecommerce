@@ -192,6 +192,7 @@ class AddProduct extends Component {
         this.setState({
             formdata: newFormdata
         })
+        console.log(this.state.formdata.images.value)
     }
 
     updateForm = (element) => {
@@ -268,6 +269,8 @@ class AddProduct extends Component {
         this.setState({
             formdata: newFormData
         })
+        console.log(this.state.formdata.images.value)
+
     }
 
 
@@ -280,7 +283,7 @@ class AddProduct extends Component {
                     <form onSubmit={(event) => this.submitForm(event)}>
 
                         <FileUpload
-                            imagesHandler={(images) => this.imagesHandler()}
+                            imagesHandler={(images) => this.imagesHandler(images)}
                             reset={this.state.formSuccess}
                         />
 

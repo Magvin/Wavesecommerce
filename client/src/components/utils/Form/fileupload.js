@@ -15,7 +15,18 @@ class Fileupload extends Component {
         }
     }
     onRemove = (id) => {
+        axios.get(`/api/users/removeimage?public_id=${id}`)
 
+            .then(response => {
+                let images = this.state.uploadedFiles.filter((item) => {
+                    return item.public_id !== id;
+                })
+                this.setState({
+                    uploadedFiles: images
+                }, () => {
+                    this.props.imagesHandler(images)
+                })
+            })
     }
     showUploadedImages = () => (
         this.state.uploadedFiles.map((item, i) => (
@@ -32,17 +43,18 @@ class Fileupload extends Component {
         ))
     )
     onDrop = (files) => {
-        this.setState({
-            uploading: true
-        })
+        this.setState({ uploading: true });
         let formData = new FormData();
         const config = {
             header: { 'content-type': 'multipart/form-data' }
         }
-        formData.append('file', files[0]);
+        formData.append("file", files[0]);
+
         axios.post('/api/users/uploadimage', formData, config)
             .then(response => {
+
                 console.log(response.data)
+
                 this.setState({
                     uploading: false,
                     uploadedFiles: [
@@ -52,7 +64,16 @@ class Fileupload extends Component {
                 }, () => {
                     this.props.imagesHandler(this.state.uploadedFiles)
                 })
-            })
+            });
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (props.reset) {
+            return state = {
+                uploadedFiles: []
+            }
+        }
+        return null;
     }
     render() {
 
