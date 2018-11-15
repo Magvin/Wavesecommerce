@@ -894,3 +894,32 @@ footer .business_nfo .nfo {
     background-position: center center !important;
     border: 1px solid #eaeaea;
 }
+
+.cookies_text{
+    background-color: #4d4d4d;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #4d4d4d;
+    width: 80%;
+    color: white;
+}
+.cookies{
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 85vh;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.close{
+    float: right;
+    font-size: 35px;
+}
+.close:hover{
+    color:red;
+    cursor: pointer;
+}

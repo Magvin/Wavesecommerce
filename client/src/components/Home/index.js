@@ -8,7 +8,7 @@ import { getProductsBySell, getProductsByArrival } from '../../actions/products_
 
 class Home extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.dispatch(getProductsBySell());
         this.props.dispatch(getProductsByArrival());
     }
@@ -16,16 +16,17 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <HomeSlider/>
+                <HomeSlider />
                 <CardBlock
                     list={this.props.products.bySell}
                     title="Best Selling guitars"
                 />
-                <HomePromotion/>
+                <HomePromotion />
                 <CardBlock
                     list={this.props.products.byArrival}
                     title="New arrivals"
                 />
+
             </div>
         );
     }
