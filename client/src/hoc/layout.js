@@ -16,7 +16,7 @@ class Layout extends Component {
     }
     checkCookies(cookies) {
 
-        if (document.cookie.length != 0) {
+        if (document.cookie.length !== 0) {
             return true
         } else {
             return false
