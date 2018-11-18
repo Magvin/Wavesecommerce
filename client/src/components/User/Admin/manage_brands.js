@@ -30,55 +30,12 @@ class ManageBrands extends Component {
             },
         }
     }
-    updateForm = (element) => {
-        const newFormdata = update(element, this.state.formdata, 'brand');
-        this.setState({
-            formError: false,
-            formdata: newFormdata
-        })
-    }
-    submitForm = (event) => {
-        event.preventDefault();
 
-        let dataToSubmit = generateData(this.state.formdata, 'brand');
-        let formIsValid = isFormValid(this.state.formdata, 'brand')
 
-        if (formIsValid) {
-            this.props.dispatch(addBrands(dataToSubmit))
-
-        } else {
-            this.setState({
-                formError: true
-            })
-        }
-    }
-    resetFieldHandler = () => {
-        const newFormData = resetFields(this.state.formdata, "brand")
-        this.setState({
-            formdata: newFormData,
-            formSuccess: true
-
-        })
-
-    }
 
     render() {
         return (
-            <form onSubmit={(event) => this.submitForm(event)}>
-                <FormField
-                    id={'name'}
-                    formdata={this.state.formdata.name}
-                    change={(element) => this.updateForm(element)}
-                />
-                {this.state.formError ?
-                    <div className="error_label">
-                        Please check your data
-                                        </div>
-                    : null}
-                <button onClick={(event) => this.submitForm(event)}>
-                    Add Brand
-                        </button>
-            </form>
+        
 
 
         )
@@ -88,7 +45,7 @@ class ManageBrands extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        brand: state.addBrands
+        brands: state.brands
     }
 }
 

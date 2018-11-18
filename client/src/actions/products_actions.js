@@ -89,7 +89,7 @@ export function clearProduct() {
 export function addBrands(dataToSubmit) {
 
     const request = axios.post(`${PRODUCT_SERVER}/brand`)
-        .then(response => response.data)
+        .then(response => console.log(response.data))
     return {
         type: ADD_BRAND,
         payload: request
