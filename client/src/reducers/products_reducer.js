@@ -31,7 +31,7 @@ export default function (state = {}, action) {
         case CLEAR_PRODUCT:
             return { ...state, addProduct: action.payload }
         case ADD_BRAND:
-            return { ...state, addBrand: action.payload }
+            return { ...state, addBrand: action.payload, brands: action.payload.brands }
         default:
             return state;
     }

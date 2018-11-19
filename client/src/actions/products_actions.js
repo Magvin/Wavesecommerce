@@ -86,10 +86,20 @@ export function clearProduct() {
 //////        CATEGORIES
 ////////////////////////////////////
 
-export function addBrands(dataToSubmit) {
+export function addBrands(dataToSubmit, existingBrands) {
 
-    const request = axios.post(`${PRODUCT_SERVER}/brand`)
-        .then(response => console.log(response.data))
+    const request = axios.post(`${PRODUCT_SERVER}/brand`, dataToSubmit)
+        .then(response => {
+            let brands = [
+                ...existingBrands,
+                response.data.brand
+            ];
+            return {
+                success: response.data.success,
+                brands
+            }
+
+        });
     return {
         type: ADD_BRAND,
         payload: request
