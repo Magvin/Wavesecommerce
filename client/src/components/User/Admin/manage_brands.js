@@ -28,7 +28,8 @@ class ManageBrands extends Component {
                 validationMessage: '',
                 showlabel: true
             },
-        }
+        },
+        oldBrands: []
     }
 
 
@@ -36,6 +37,12 @@ class ManageBrands extends Component {
         this.props.dispatch(getBrands())
 
     }
+    componentDidUpdate() {
+        this.props.dispatch(getBrands())
+    }
+
+
+
     resetFieldHandler = () => {
         const newFormData = resetFields(this.state.formdata, 'brands');
 
@@ -50,41 +57,6 @@ class ManageBrands extends Component {
         }, 3000)
     }
 
-
-    submitForm = (event) => {
-        event.preventDefault();
-
-        let dataToSubmit = generateData(this.state.formdata, 'brands');
-        let formIsValid = isFormValid(this.state.formdata, 'brands')
-        let existingBrand = this.props.products.brands
-
-        if (formIsValid) {
-            this.props.dispatch(addBrands(dataToSubmit, existingBrand)).then(() => {
-                if (this.props.products.addBrand.success) {
-                    this.resetFieldHandler();
-
-
-                } else {
-                    this.setState({
-                        formError: true
-                    })
-                }
-            })
-        } else {
-            this.setState({
-                formError: true
-            })
-        }
-
-    }
-    updateForm = (element) => {
-        const newFormdata = update(element, this.state.formdata, 'brands');
-        this.setState({
-            formError: false,
-            formdata: newFormdata
-        })
-    }
-
     showCategoryItems = () => (
 
         this.props.products.brands ?
@@ -96,6 +68,46 @@ class ManageBrands extends Component {
 
             : null
     )
+
+
+
+
+    submitForm = (event) => {
+        event.preventDefault();
+
+        let dataToSubmit = generateData(this.state.formdata, 'brands');
+        let formIsValid = isFormValid(this.state.formdata, 'brands')
+        let existingBrand = this.props.products.brands
+
+        if (formIsValid) {
+            this.props.dispatch(addBrands(dataToSubmit, existingBrand)).then(response => {
+                if (response.payload.success) {
+
+                    this.resetFieldHandler()
+
+                } else {
+                    this.setState({ formError: true })
+
+                }
+            })
+        } else {
+            this.setState({
+                formError: true
+
+            })
+
+        }
+
+    }
+    updateForm = (element) => {
+        const newFormdata = update(element, this.state.formdata, 'brands');
+        this.setState({
+            formError: false,
+            formdata: newFormdata
+        })
+    }
+
+
     addCategoryItem = () => (
         <div>
             <form onSubmit={(event) => this.submitForm(event)}>
@@ -115,7 +127,7 @@ class ManageBrands extends Component {
 
             {this.state.formError ?
                 <div className="error_label">
-                    Please check your data
+                    Already exists.  Please check your data
                                         </div>
                 : null}
             <button onClick={(event) => this.submitForm(event)}>
