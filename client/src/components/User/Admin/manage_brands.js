@@ -28,8 +28,7 @@ class ManageBrands extends Component {
                 validationMessage: '',
                 showlabel: true
             },
-        },
-        oldBrands: []
+        }
     }
 
 
