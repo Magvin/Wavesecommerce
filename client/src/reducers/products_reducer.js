@@ -6,7 +6,9 @@ import {
     GET_PRODUCTS_TO_SHOP,
     ADD_PRODUCT,
     CLEAR_PRODUCT,
-    ADD_BRAND
+    ADD_BRAND,
+    GET_PRODUCT_DETAIL,
+    CLEAR_PRODUCT_DETAIL
 } from '../actions/types';
 
 
@@ -32,6 +34,10 @@ export default function (state = {}, action) {
             return { ...state, addProduct: action.payload }
         case ADD_BRAND:
             return { ...state, addBrand: action.payload.success, brands: action.payload.brands }
+        case GET_PRODUCT_DETAIL:
+            return { ...state, infoProduct: action.payload }
+        case CLEAR_PRODUCT_DETAIL:
+            return { ...state, clearProduct: action.payload }
         default:
             return state;
     }
