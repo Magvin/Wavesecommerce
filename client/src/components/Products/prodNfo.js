@@ -51,6 +51,30 @@ function ProdNfo(props) {
         </div>
     )
 
+    const showProdAction = (detail) => (
+        <div className="product_actions">
+            <div className="price">$ {detail.price}</div>
+            <div className="cart">
+                <MyButton
+                    type='add_to_cart_link'
+                    runAction={() => {
+                        console.log('add_to_cart')
+                    }}
+                />
+            </div>
+        </div>
+    )
+
+    const showProdSpecification = (detail) => (
+
+        <div className="product_specifications">
+            <h2>Specifications</h2>
+            <div>
+                <div className="item"><strong>Frets:</strong>{detail.frets}</div>
+                <div className="item"><strong>Wood:</strong>{detail.wood.name}</div>
+            </div>
+        </div>
+    )
 
     return (
         <div>
@@ -58,7 +82,9 @@ function ProdNfo(props) {
             <p>{detail.description}</p>
 
 
-            <p>{showProdTags(detail)}</p>
+            {showProdTags(detail)}
+            {showProdAction(detail)}
+            {showProdSpecification(detail)}
         </div>
     )
 }

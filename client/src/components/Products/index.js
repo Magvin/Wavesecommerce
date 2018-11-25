@@ -6,6 +6,7 @@ import { getProductDetail, clearProductDetails } from '../../actions/products_ac
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ProdNfo from './prodNfo';
+import ProdImg from './prodImg'
 
 
 
@@ -30,8 +31,8 @@ class Product extends Component {
     }
 
 
-    addToCartHandler=(id)=>{
-        
+    addToCartHandler = (id) => {
+
     }
 
     render() {
@@ -40,29 +41,36 @@ class Product extends Component {
             <div>
                 <PageTop title="Product Details" />
                 <div className="container">
-                {
-                    this.props.products.infoProduct ?
-                       <div className="product_detail_wrapper">
-                        <div className="left">
-                                images
-                        
-                        </div>
+                    {
+                        this.props.products.infoProduct ?
+                            <div className="product_detail_wrapper">
+                                <div className="left">
+                                    <div style={{ width: '500px' }}>
+                                        <ProdImg
+                                            detail={this.props.products.infoProduct}
 
-                        <div className="right">
-                            <ProdNfo detail={this.props.products.infoProduct}
-                            
-                            addToCart={(id)=>this.addToCartHandler(id)}
-                            
-                            />
-                        
-                        </div>
-                       
-                       </div>
+                                        />
 
-                        : <div className='main_loader' style={{ margin: '0 auto' }}>
-                            <CircularProgress style={{ color: '#2196F3' }} thickness={7} />
-                        </div>
-                }
+
+                                    </div>
+
+                                </div>
+
+                                <div className="right">
+                                    <ProdNfo detail={this.props.products.infoProduct}
+
+                                        addToCart={(id) => this.addToCartHandler(id)}
+
+                                    />
+
+                                </div>
+
+                            </div>
+
+                            : <div className='main_loader' style={{ margin: '0 auto' }}>
+                                <CircularProgress style={{ color: '#2196F3' }} thickness={7} />
+                            </div>
+                    }
                 </div>
             </div>
         )
