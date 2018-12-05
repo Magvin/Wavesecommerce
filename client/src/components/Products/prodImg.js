@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactImages from 'react-images'
+
 import ImageLigtbox from '../utils/lighbox';
 
 

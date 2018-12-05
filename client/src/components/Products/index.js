@@ -17,9 +17,15 @@ class Product extends Component {
 
 
     componentDidMount() {
-
+        const productWrapper = document.querySelector('.product_section')
         const id = this.props.match.params._id
-        this.props.dispatch(getProductDetail(id))
+        this.props.dispatch(getProductDetail(id)).then(res => {
+
+            if (!this.props.products.infoProduct) {
+                productWrapper.innerHTML = '<div class="not_found_container"> PRODUCT NOT FOUND </div>'
+            }
+
+        })
 
 
 
@@ -40,7 +46,7 @@ class Product extends Component {
         return (
             <div>
                 <PageTop title="Product Details" />
-                <div className="container">
+                <div className="container product_section">
                     {
                         this.props.products.infoProduct ?
                             <div className="product_detail_wrapper">
