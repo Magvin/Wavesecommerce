@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PageTop from '../utils/page_top';
 import { connect } from 'react-redux';
+import { addToCart } from '../../actions/user_actions'
 import { getProductDetail, clearProductDetails } from '../../actions/products_actions';
 
 
@@ -38,7 +39,7 @@ class Product extends Component {
 
 
     addToCartHandler = (id) => {
-
+        this.props.dispatch(addToCart(id))
     }
 
     render() {
@@ -86,7 +87,8 @@ class Product extends Component {
 const mapStateToProps = state => {
 
     return {
-        products: state.products
+        products: state.products,
+        user: state.user
     }
 }
 
