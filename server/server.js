@@ -268,7 +268,7 @@ app.get('/api/users/removeimage', auth, admin, (req, res) => {
 })
 
 
-
+//====CART =====///
 app.post('/api/users/addToCart', auth, (req, res) => {
 
     User.findOne({ _id: req.user._id }, (err, doc) => {
@@ -322,7 +322,42 @@ app.post('/api/users/addToCart', auth, (req, res) => {
     })
 })
 
-const port = process.env.PORT || 3002;
+
+app.get('/api/users/removeFromCart', auth, (req, res) => {
+
+    User.findByIdAndUpdate(
+        { _id: req.user._id },
+        {
+            "$pull":
+            {
+                "cart": { "id": mongoose.Types.ObjectId(req.query._id), }
+            }
+        },
+        { new: true },
+        (err, doc) => {
+            let cart = doc.cart;
+            let array = cart.map(item => {
+                return mongoose.Types.ObjectId(item.id)
+            });
+            Product.
+                find({ '_id': { $in: array } }).
+                populate('brand').
+                populate('wood').
+                exec((err, cartDetail) => {
+
+                    if (err) return console.error(err)
+                    return res.status(200).json({
+                        cartDetail,
+                        cart
+                    })
+                })
+        }
+
+    );
+
+})
+
+const port = process.env.PORT || 8002;
 app.listen(port, () => {
     console.log(`Server Running at ${port}`)
 })

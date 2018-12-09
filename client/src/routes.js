@@ -13,6 +13,7 @@ import UserDashboard from './components/User';
 import AddProduct from './components/User/Admin/add_product';
 import ManageCategories from './components/User/Admin/managa_categories'
 import Product from './components/Products';
+import UserCart from './components/User/cart';
 
 const Routes = () => {
   return (
@@ -21,7 +22,7 @@ const Routes = () => {
         <Route path="/user/dashboard" exact component={Auth(UserDashboard, true)} />
         <Route path="/admin/add_product" exact component={Auth(AddProduct, true)} />
         <Route path="/admin/manage_categories" exact component={Auth(ManageCategories, true)} />
-
+        <Route path='/user/cart' exact component={Auth(UserCart, true)} />
         <Route path='/product_detail/:_id' exact component={Auth(Product, null)} />
         <Route path="/register" exact component={Auth(Register, false)} />
         <Route path="/register_login" exact component={Auth(RegisterLogin, false)} />
