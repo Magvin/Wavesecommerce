@@ -10,6 +10,7 @@ import { getCartItem, removeCartItem } from '../../actions/user_actions'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faFrown from '@fortawesome/fontawesome-free-solid/faFrown'
 import faSmile from '@fortawesome/fontawesome-free-solid/faSmile'
+import Paypal from '../utils/paypal';
 
 
 class Cart extends Component {
@@ -81,6 +82,21 @@ class Cart extends Component {
             <div>No items</div>
         </div>
     )
+
+
+    transactionError = (data) => {
+
+    }
+
+
+    transactionCanceled = (data) => {
+
+    }
+
+
+    transactionSuccess = (data) => {
+
+    }
     render() {
         return (
             <UserLayout>
@@ -110,7 +126,14 @@ class Cart extends Component {
                     {
                         this.state.showTotal ?
                             <div className="paypal_button_container">
-                                Paypal</div>
+                                <Paypal
+                                    toPay={this.state.total}
+                                    transactionError={(data) => this.transactionError(data)}
+                                    transactionCanceled={(data) => this.transactionCanceled(data)}
+                                    onSuccess={(data) => this.transactionSuccess(data)}
+
+                                />
+                            </div>
 
                             : null
                     }
