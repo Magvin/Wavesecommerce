@@ -85,16 +85,23 @@ class Cart extends Component {
 
 
     transactionError = (data) => {
-
+        console.log(data)
     }
 
 
     transactionCanceled = (data) => {
-
+        console.log(data)
     }
 
 
     transactionSuccess = (data) => {
+
+        this.setState({
+            showTotal: false,
+            showSuccess: true
+
+        })
+
 
     }
     render() {
@@ -109,7 +116,7 @@ class Cart extends Component {
                         removeItem={(id) => this.removeFromCart(id)}
 
                     />
-                    {this.state.showTotal ? <div className='user_cart_sum'>Total amount: $ {this.state.total}</div> : this.state.showSucces ?
+                    {this.state.showTotal ? <div className='user_cart_sum'>Total amount: $ {this.state.total}</div> : this.state.showSuccess ?
                         <div className="cart_success">
                             <FontAwesomeIcon icon={faSmile} />
                             <div>
