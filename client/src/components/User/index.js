@@ -2,11 +2,11 @@ import React from 'react';
 import UserLayout from '../../hoc/user';
 import MyButton from '../utils/button';
 
-const UserDashboard = ({user}) => {
+const UserDashboard = ({ user }) => {
     return (
         <UserLayout>
             <div>
-                
+
                 <div className="user_nfo_panel">
                     <h1>User information</h1>
                     <div>
@@ -21,16 +21,18 @@ const UserDashboard = ({user}) => {
                     />
                 </div>
 
+
+
                 <div className="user_nfo_panel">
                     <h1>History purchases</h1>
                     <div className="user_product_block_wrapper">
-                            history
-                    </div>            
+                        history
+                    </div>
                 </div>
-                
+
             </div>
         </UserLayout>
-        
+
     );
 };
 
